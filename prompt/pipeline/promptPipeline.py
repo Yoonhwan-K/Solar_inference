@@ -24,12 +24,10 @@ def inference_warmup(model, tokenizer, script, device) :
     inputs_ids = tokenizer.encode_plus(script, padding = 'longest', max_length = 80, pad_to_max_length = True, 
                                        truncation = True, return_tensors = 'pt').to(device)
     
-    logger.info('1')
     with torch.no_grad() :
 
         outputs = model.generate(**inputs_ids, num_beams = 1, num_return_sequences = 1, max_length = 30,
                                 early_stopping = False)
-    logger.info('2')
     output_sequences = tokenizer.decode(outputs[0], skip_special_tokens = True)
 
     logger.info("promptPipeline inference warmup end")
