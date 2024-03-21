@@ -42,7 +42,7 @@ class PromptPipeline(promptInterface) :
     def prepare_model(self, base_model) :
 
         # self.device = torch.device(set_service_gpu())
-        self.device = 'cuda:0'
+        self.device = set_service_gpu()
 
         logger.info("promptPipeline prepare model start")
 
